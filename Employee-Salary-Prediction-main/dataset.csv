@@ -1,0 +1,6 @@
+Age,Gender,Education,JobRole,Experience,Workclass,MaritalStatus,Relationship,Race,Salary
+25,Male,Bachelors,Software Engineer,2,Private,Single,Not-in-family,White,400000
+30,Female,Masters,Manager,7,Government,Married,Spouse,Asian-Pac-Islander,800000
+28,Male,PhD,Data Analyst,4,Private,Single,Own-child,Black,500000
+35,Female,Bachelors,HR Specialist,10,Government,Married,Spouse,White,600000
+40,Male,Masters,Developer,15,Private,Divorced,Unmarried,Asian-Pac-Islander,900000
