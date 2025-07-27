@@ -311,7 +311,40 @@ input_df = pd.DataFrame([{
 # Load and prepare training data
 @st.cache_data
 def load_data():
-    df = pd.read_csv("dataset.csv")
+    import os
+    # Try different possible paths for the dataset
+    possible_paths = [
+        "dataset.csv",
+        "Employee-Salary-Prediction-main/dataset.csv",
+        os.path.join(os.path.dirname(__file__), "dataset.csv")
+    ]
+    
+    for path in possible_paths:
+        if os.path.exists(path):
+            df = pd.read_csv(path)
+            return df
+    
+    # If no file found, create a sample dataset
+    st.error("Dataset file not found. Creating sample data...")
+    import numpy as np
+    np.random.seed(42)
+    
+    # Create sample data
+    n_samples = 1000
+    data = {
+        'Age': np.random.randint(22, 65, n_samples),
+        'Gender': np.random.choice(['Male', 'Female'], n_samples),
+        'Education': np.random.choice(['Bachelor', 'Master', 'PhD'], n_samples),
+        'JobRole': np.random.choice(['Software Engineer', 'Data Scientist', 'Product Manager', 'Designer'], n_samples),
+        'Workclass': np.random.choice(['Private', 'Government'], n_samples),
+        'MaritalStatus': np.random.choice(['Single', 'Married'], n_samples),
+        'Relationship': np.random.choice(['Not in family', 'Husband', 'Wife'], n_samples),
+        'Race': np.random.choice(['White', 'Black', 'Asian'], n_samples),
+        'Experience': np.random.randint(0, 20, n_samples),
+        'Salary': np.random.randint(30000, 150000, n_samples)
+    }
+    
+    df = pd.DataFrame(data)
     return df
 
 df = load_data()
